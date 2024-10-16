@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel=”stylesheet” href=”css/bootstrap.css”>
+<link rel=”stylesheet” href=”css/bootstrap-responsive.css”>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <title>Fund the Patriots</title>
+  <link rel="stylesheet" href="styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://kit.fontawesome.com/d39e31d5cb.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="mt-3">
+    <div id="app-heading" class="app-heading col-12">
+      <h1 class="text-danger app-heading-h1 londrina-solid-black">Fund the Patriots</h1>
+      
+      <p class="lead app-heading-h1 mr-2 text-primary">Those that donate seem to rule ...Donate!</p>
+    </div>
+  </div>
+  <hr class="mb-3">
+  <div class="row menu">
+    <p id="only-admin" class=" only-admin mr-3"><a href="http://localhost:5000/admin"><i class="fa fa-user-plus fa-lg text-primary"></i></a></p>    
+    <p id="only-cart" onclick="openCart()" class="mr-3"><a class="text-success"><i class="fa fa-shopping-cart fa-lg text-primary"></i></a></p>
+    <p id="login-link" class="mr-3 ml-1"><a href="http://localhost:5000/login"><i id="sign-in" class="fa fa-sign-in fa-lg text-primary"></i></a></p>
+    <p id="logout-link" onclick="logout()" class="mr-3 ml-1"><a href="http://localhost:5000/index"><i id="sign-out" class="fa fa-sign-out fa-lg text-primary"></i></a></p>
+  </div>
+  
+
+  
+  
+
+  
+    <div id="theCart" class="cart bye-for-now">
+        <h2 class="text-cart">Cart</h2>
+        <hr>
+        <div id="cart-items"></div>
+        <p class="text-success the-total mt-2">Total: $<span id="total-amount">0</span></p>
+        <button id="checkout-button" class="check-out-button" onclick="checkout()">Checkout</button>
+    </div>
+    <div id="message" class="mt-3 message text-center"></div>
+    <div id="candidates" class="container wrapper mt-3"></div>
+  </div>
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+
+let token = localStorage.getItem('token');
+
+if (token) {
+            let role = JSON.parse(atob(token.split('.')[1])).user.role;
+            let userId = JSON.parse(atob(token.split('.')[1])).user.id;
+    }
+
+    if (!token) {
+  document.getElementById('only-cart').style.display = 'none';
+}  
+
+if (token) {
+  let role = JSON.parse(atob(token.split('.')[1])).user.role;
+  let userId = JSON.parse(atob(token.split('.')[1])).user.id;
+
+  document.getElementById('login-link').style.display = 'none';
+
+  if (role !== 'admin') {
+      document.getElementById('only-admin').style.display = 'none'; 
+    }
+
+  if (role === 'admin') {
+      document.getElementById('only-cart').style.display = 'none';
+    }
+
+} else {
+      document.getElementById('logout-link').style.display = 'none';
+      document.getElementById('only-admin').style.display = 'none';
+    }
+    
+    fetch('/api/candidates')
+      .then(response => response.json())
+      .then(candidates => {
+        candidates.forEach(candidate => {
+          if (candidate && candidate.active === true ) { 
+          const candidateElement = document.createElement('div');
+          candidateElement.classList.add('card', 'my-3');
+          candidateElement.setAttribute("id", `myBorder${candidate._id}`);
+          if (token && JSON.parse(atob(token.split('.')[1])).user.role === "admin") {
+            candidateElement.innerHTML = `
+            <h5 id="cand-name${candidate._id}" class="card-title ml-1">${candidate.name}</h5>
+            <form id="update-candidate-form${candidate._id}" onsubmit="handleFormSubmit(event, '${candidate._id}')" class="update-candidate-form" enctype="multipart/form-data">
+            <input id="cand-id${candidate._id}" name:candidateId type="hidden" value="${candidate._id}">
+            <input id="current-name${candidate._id}" name:candidateId type="hidden" value="${candidate.name}">
+            <input id="current-description${candidate._id}" name:candidateId type="hidden" value="${candidate.description}">
+            <input id="current-picture${candidate._id}" name:candidateId type="hidden" value="${candidate.picture}">
+            <input id="cand-name-replace${candidate._id}" type="text" class="bye-for-now cand-name-replace" id="name" name="name" placeholder="${candidate.name}">
+            <p id="cand-description${candidate._id}" class="ml-1">${candidate.description}</p>
+            <input id="cand-description-replace${candidate._id}" type="text" class="bye-for-now cand-description-replace name="description" placeholder="${candidate.description}">
+            <div id="cand-image${candidate._id}" class="cand-image text-center">
+            ${candidate.picture ? `<img id="change-image${candidate._id}" class="card-img-top" src="${candidate.picture}" alt="${candidate.name}">` : ''}
+            </div>          
+            <div id="cand-image-replace${candidate._id}" class="bye-for-now cand-image" ondrop="dropHandler(event)" ondragover="dragOverHandler(event)">
+            <input type="file" onchange="picFunction('${candidate._id}')" id="picture${candidate._id}" name="picture" class="bye-for-now stable-input-div" accept="image/*">
+            <input id="upload-pic${candidate._id} type="image" class="cand-image-replace opac by for now card-img-top text-center" name="uploadImage"
+            ${candidate.picture ? `<img class= card-img-top" src="/uploads/uploadpic.png" alt="${candidate.name}">` : ''}
+            </input>
+            </div>
+              <div class="mt-3 amount-div row">
+              <div class="col 4 ml-2 amount-cand"><label class="pt-2" for="amount">Amount: $</label></div>
+              <div class="col-6 mr-2 amount-cand"><input onfocus="checkToken()" class=" amount-cand-input" id="amount-${candidate._id}" type="number" onkeyup="checkValue('${candidate._id}')" class="form-control"></div>
+              </div>
+            <button type="submit" id="alter-candidate${candidate._id}" style="width: 90%;" class="btn btn-primary m-2 bye-for-now">Update Candidate</button>
+            </form>
+            <button id="alter${candidate._id}" style="width: 90%;" class="btn btn-primary m-2" onclick="addToCart('${candidate._id}', '${candidate.name}')">Add to Cart</button>
+            <div id="modify-links" class="ml-2 row">
+              <button id="cand-edit-button-update${candidate._id}" onclick="updateCandidate('${candidate._id}')" class="mr-2 p-1 removable candidate-modify-button updater">update</button>
+              <button id="cand-edit-button-delete${candidate._id}" onclick="deleteCandidate('${candidate._id}')" class="p-1 removable candidate-modify-button deleter">delete</button>
+              <button id="cand-edit-button-cancel${candidate._id}" onclick="cancelCandidateUpdate('${candidate._id}')" class="p-1 candidate-modify-button bye-for-now deleter">cancel</button>
+          </div>
+          `;
+        } 
+        if (token && JSON.parse(atob(token.split('.')[1])).user.role === "genUser" || !token) {
+
+            candidateElement.innerHTML = `          
+            <h5 class="card-title ml-1">${candidate.name}</h5>
+            <p class="ml-1">${candidate.description}</p>
+            <div class="text-center">
+            ${candidate.picture ? `<img class="card-img-top" src="${candidate.picture}" alt="${candidate.name}">` : ''}
+            </div>
+            <div class="mt-3 amount-div row">
+              <div class="col 4 ml-2 amount-cand"><label class="pt-2" for="amount">Amount: $</label></div>
+              <div class="col-6 mr-2 amount-cand"><input onfocus="checkToken()" class=" amount-cand-input" id="amount-${candidate._id}" type="number"  onkeyup="checkValue('${candidate._id}')" class="form-control"></div>
+              </div>
+            <button id="alter${candidate._id}" class="btn btn-primary m-2" onclick="addToCart('${candidate._id}', '${candidate.name}')">Add to Cart</button>
+          `; }
+          const candidatesContainer = document.getElementById('candidates');
+          candidatesContainer.appendChild(candidateElement);
+        }});
+      });
+
+  </script>
+  <script src="scripts/main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

@@ -1,0 +1,494 @@
+* {
+  box-sizing: border-box;
+}
+
+
+
+body {
+	background: #fafafa url(https://jackrugile.com/images/misc/noise-diagonal.png);
+	color: #444;
+	font: 100%/30px 'Helvetica Neue', helvetica, arial, sans-serif;
+	text-shadow: 0 1px 0 #fff;
+  position: relative;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+strong {
+	font-weight: bold; 
+}
+
+em {
+	font-style: italic; 
+}
+
+#sign-out {
+  font-size: 1.55rem;
+}
+
+#sign-out {
+  font-size: 1.55rem;
+}
+
+#sign-in {
+  font-size: 1.55rem;
+}
+
+.admin-text {
+  color: blue;
+}
+
+.app-heading {
+  display: block;
+  padding: 0%;
+  margin: 0rem 0rem 0rem 2rem;
+}
+
+.app-heading-h1 {
+  
+  padding: 0%;
+  margin: 0%;
+}
+
+.lead {
+  padding: 0%;
+  margin: 0%;
+}
+
+.card {
+        width: 90%;
+        justify-content: center;
+        padding: 1.5em 0.5em 0.5em;
+        text-align: center;
+        border-radius: 1em;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        
+      }
+
+.card-img-top {
+      display: flex;
+      width: 8.5rem;
+      height: 8.5rem;
+      border-radius: 50%;
+      margin: 0 auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      
+      .card-title {
+        font-weight: bold;
+        font-size: 1.5em;
+      }
+ 
+ 
+
+.cart {
+        
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+        width: 400px;
+        padding: 1.5em 0.5em 0.5em;
+        border-radius: 1em;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        opacity: 50;
+             
+       }
+
+.check-out-button {
+        padding: 0%;
+        margin: 0%;
+        border: none;
+        background-color: transparent;
+        color: blue;
+        cursor: pointer;
+        outline: none;
+      }
+      .the-total {
+        width: 50%;
+      }
+  
+      .wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .loginAndRegister {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5em 0.3em 0.3em;
+    background-color: transparent;
+    border: none;
+    text-align: center;
+    border-radius: 1em;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .loginAndRegister input {
+    display: block;
+  }
+
+  .loginAndRegister button {
+    margin-top: 1rem;
+  }
+  
+  .login-form div {
+    display: flex;
+    
+
+  }
+
+  .login-form button {
+    
+    margin: 1rem, .5rem, .3rem, .5rem;
+    color: blue;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+  }
+
+  .login-form button:hover {
+    color: white;
+    background-color: blue; 
+  }
+
+  .login-form h4 {
+    display: flex;
+    flex: end; 
+  }
+
+  .register-form div {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  .register-form button {
+    margin-top: 1rem;
+    color: blue;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    background: transparent;
+  }
+
+  .register-form button:hover {
+    color: white;
+    background-color: blue; 
+  }
+
+  .register-form h4 {
+    display: flex;
+    flex: end; 
+  }
+  
+  @media (width <= 1200px) {
+        .wrapper {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  }
+  @media (width <= 1000px) {
+        .wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  }
+  @media (width <= 500px) {
+  .wrapper {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .card {
+    width: 100%;
+    }
+
+    .message {
+      width: 100%;
+    }
+  }
+  @media (width <= 420px) {
+  .card {
+    width: 100%;
+  }
+  
+  .cart {
+    width: 95%;
+    }
+
+  .login-form  {
+    width: 100%;
+    }
+
+  .register-form  {
+    width: 100%;
+    }
+
+    .message {
+      width: 100%;
+    }
+  }
+
+  .loginOrRegister {
+    padding: 0rem;
+    margin: 0rem 0rem 0rem 0rem;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .menu {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+  }
+
+  .menu a p {
+    display: flex;
+    justify-content: flex-end;
+    
+  }
+
+  .add-candidate {
+    justify-content: center;
+    width: 100%;;
+  }
+
+  .modify-links {
+    justify-content: end;
+    align-items: center;
+    width: 90%;
+  }
+
+  .modify-buttons {
+    
+    width: 100%;
+  }
+
+  #cart-items {
+   width: auto;
+  }
+
+  
+  .each-row {
+    margin: 0%;
+    padding: 0%;
+    justify-content: center;
+    align-items: normal, center;
+    width: 100%;
+  }
+
+  .candidate-modify-button {
+    background-color: transparent;
+    /* color: blue; */
+    border: none;
+    padding: 0px;
+    margin: 0rem 0rem .5rem 0rem;
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .cart-item-updater-button {
+    background-color: transparent;
+    border: none;
+    /* padding-right: 1px; */
+    /* margin: 0rem 0rem .5rem 0rem; */
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .cart-item-delete-button {
+    background-color: transparent;
+    border: none;
+    /* margin-top: 2px; */
+    /* margin: 0rem 0rem .5rem 0rem; */
+    cursor: pointer;
+    border-radius: 15px;
+  }
+
+  .cand-name-replace {
+    justify-content: center;
+    width: 85%;
+    outline: none;
+    border-left: none;
+    border-top: none; 
+    border-right: none;
+    border-bottom: 1px solid rgb(189, 189, 194);
+  }
+
+  .cand-description-replace {
+    width: 85%;
+    outline: none;
+    border-left: none;
+    border-top: none; 
+    border-right: none;
+    border-bottom: 1px solid rgb(189, 189, 194);
+    margin-bottom: .70rem;
+  }
+
+  .car-cand-div {
+    margin: 0%;
+    padding: 0%;
+  }
+  
+  .cart-candidate {
+    padding: 2px;
+  }
+
+  .amount-div {
+    padding-left: 1rem;
+    width: 100%;
+    
+
+  }
+
+  .amount-cand {
+    width: 100%;
+    padding: 0%;
+    margin: 0%;
+  }
+
+  .amount-cand-input {
+    margin-top: .5rem;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 80%;
+    border-color: rgb(245, 235, 235);
+  }
+
+  .amount-cand-input:focus {
+    border-color: rgb(245, 235, 235);
+    outline: none;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    width: 80%;
+  }
+
+  .text-cart {
+    color: blue;
+  }
+
+  .item-width {
+    width: 115%;
+    padding: 0%;
+    margin: 0%;
+  }
+
+  .updater {
+    color: blue;
+  }
+
+  .deleter {
+    color: red;
+  }
+
+  .deleter:hover {
+    background-color: red;
+    color: white;
+  }
+
+  .updater:hover {
+    background-color: blue;
+    color: white;
+  }
+
+  .bye-for-now {
+    display: none;
+  }
+
+  .cart-item-edited-amount {
+    width: 80%;
+    height: 2.87rem;
+  }
+
+  .cand-image {
+    position: relative;
+  }
+
+  .opac {
+    position: absolute;
+    bottom: 0rem;
+    left: 2.8rem;
+    /* cursor: pointer; */
+    opacity: 0;
+    
+    
+  }
+
+  .stable-image-div {
+    position: relative;
+    
+  }
+
+  .stable-input-div {
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    bottom: 0rem;
+    left: 3rem;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 20;
+    
+    
+  }
+
+  .update-candidate-form {
+    justify-content: center;
+  }
+
+  .londrina-solid-thin {
+    font-family: "Londrina Solid", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+  
+  .londrina-solid-light {
+    font-family: "Londrina Solid", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+  }
+  
+  .londrina-solid-regular {
+    font-family: "Londrina Solid", sans-serif;
+    font-weight: 4cv yhu00;
+    font-style: normal;
+  }
+  
+  .londrina-solid-black {
+    font-family: "Londrina Solid", sans-serif;
+    font-weight: 900;
+    font-style: normal;
+  }
+
+  .message {
+    width: 100%;
+    z-index: 1200;
+    background: rgba(255,255,255, 0.9);
+    position: fixed;
+    width: 300px;
+    left: 50%;
+    margin-left: -150px;
+    box-sizing: border-box;
+  }
+
+  .errorDuringLoginOrRegistration {
+    border-color: red;
+  }
+
+
+  
+  
+
+  
+  
