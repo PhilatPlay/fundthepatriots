@@ -44,7 +44,6 @@ exports.createCheckoutSession = async (req, res) => {
 
         res.json({ id: session.id });
     } catch (err) {
-        console.error('Error creating checkout session:', err.message);
         res.status(500).send('Server error');
     }
 };
@@ -59,11 +58,9 @@ exports.temporaryCheckout = async (req, res, next) => {
     try {
         tempDon.forEach(async function (temp) {
             const candidate = await Candidate.findById(temp.candidateId);
-            console.log('Candidate:', candidate);
             if (candidate) {
                 candidate.total_donations += temp.amount;
                 await candidate.save();
-                console.log('Updated Candidate:', candidate);
 
                 const newDonation = new Donation({
                     user: user.username,
@@ -71,7 +68,6 @@ exports.temporaryCheckout = async (req, res, next) => {
                     amount: temp.amount
                 });
                 await newDonation.save();
-                console.log('New Donation:', newDonation);
             }
         })
         tempDon = [];
@@ -81,6 +77,17 @@ exports.temporaryCheckout = async (req, res, next) => {
     }
     next();
 }
+
+exports.getDonations = async (req, res) => {
+    // no reason to populate the user field
+    try {
+        const donations = await Donation.find().populate('candidate');
+        res.json(donations);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server error');
+    }
+};
 
 // exports.handleStripeWebhook = async (req, res) => {
 //     const sig = req.headers['stripe-signature'];
@@ -105,7 +112,7 @@ exports.temporaryCheckout = async (req, res, next) => {
 //           if (candidate) {
 //             candidate.total_donations += donation.amount;
 //             await candidate.save();
-//             console.log('Updated Candidate:', candidate);
+//             .log('Updated Candidate:', candidate);
 
 //             const newDonation = new Donation({
 //               user: donation.userId,
@@ -125,13 +132,4 @@ exports.temporaryCheckout = async (req, res, next) => {
 //     res.json({ received: true });
 //   };
 
-exports.getDonations = async (req, res) => {
-    // no reason to populate the user field
-    try {
-        const donations = await Donation.find().populate('candidate');
-        res.json(donations);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
-    }
-};
+

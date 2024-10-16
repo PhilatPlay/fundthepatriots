@@ -21,7 +21,6 @@ let cart = [];
 function checkValue(candidateId) {
     let amount = document.getElementById('amount-' + candidateId + '').value;
     amount = amount * 1;
-    console.log(amount)
     if (amount > 3300) {
         document.getElementById("alter" + candidateId + "").disabled = true;
         document.getElementById("alter" + candidateId + "").classList.remove("btn-success");
@@ -32,7 +31,6 @@ function checkValue(candidateId) {
         return false;
     }
     if (amount > 0) {
-        console.log(amount)
         document.getElementById("alter" + candidateId + "").disabled = false;
         document.getElementById("alter" + candidateId + "").classList.add("btn-success");
         document.getElementById("myBorder" + candidateId + "").classList.add('border-success');
@@ -148,8 +146,6 @@ function doneAtCart(candidateId) {
     editedAmount.classList.add('bye-for-now');
     dollarSign.classList.add('bye-for-now');
 
-    console.log("cart:**********************", cart)
-
     let newAmount = document.getElementById(`edited-amount${candidateId}`).value;
 
     if (newAmount > 0) {
@@ -226,47 +222,45 @@ function checkout() {
         });
 }
 
-function dragOverHandler(ev) {
-    console.log("File(s) in drop zone");
+// function dragOverHandler(ev) {
+
+//     // Prevent default behavior (Prevent file from being opened)
+//     ev.preventDefault();
+// }
 
 
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
-}
+// function dropHandler(ev) {
+//     console.log("File(s) dropped");
 
+//     // Prevent default behavior (Prevent file from being opened)
+//     ev.preventDefault();
 
-function dropHandler(ev) {
-    console.log("File(s) dropped");
+//     if (ev.dataTransfer.items) {
+//         // Use DataTransferItemList interface to access the file(s)
+//         [...ev.dataTransfer.items].forEach((item, i) => {
+//             // If dropped items aren't files, reject them
+//             if (item.kind === "file") {
+//                 const file = item.getAsFile();
+//                 console.log(`… file[0].name = ${file.name}`);
+//                 console.log("file:*****in section 1*********", file.name);
+//                 const picture = file ? `${file.name}` : null;
+//             }
+//         });
 
-    // Prevent default behavior (Prevent file from being opened)
-    ev.preventDefault();
+//     } else {
 
-    if (ev.dataTransfer.items) {
-        // Use DataTransferItemList interface to access the file(s)
-        [...ev.dataTransfer.items].forEach((item, i) => {
-            // If dropped items aren't files, reject them
-            if (item.kind === "file") {
-                const file = item.getAsFile();
-                console.log(`… file[0].name = ${file.name}`);
-                console.log("file:*****in section 1*********", file.name);
-                const picture = file ? `${file.name}` : null;
-            }
-        });
+//         // Use DataTransfer interface to access the file(s)
+//         [...ev.dataTransfer.files].forEach((file, i) => {
 
-    } else {
-
-        // Use DataTransfer interface to access the file(s)
-        [...ev.dataTransfer.files].forEach((file, i) => {
-
-            if (file.kind === "file") {
-                const file = item.getAsFile();
-                console.log(`… file[0].name = ${file.name}`);
-                console.log("file:*****in section 2*********", file.name);
-                const picture = file ? `${file.name}` : null;
-            }
-        });
-    }
-}
+//             if (file.kind === "file") {
+//                 const file = item.getAsFile();
+//                 console.log(`… file[0].name = ${file.name}`);
+//                 console.log("file:*****in section 2*********", file.name);
+//                 const picture = file ? `${file.name}` : null;
+//             }
+//         });
+//     }
+// }
 
 async function updateCandidate(candidateId) {
     let role = JSON.parse(atob(token.split('.')[1])).user.role;
@@ -311,8 +305,7 @@ async function updateCandidate(candidateId) {
 };
 
 function handleFormSubmit(event, candidateId) {
-    event.preventDefault(); // Prevent the default form submission behavior
-    console.log('Form submission prevented');
+    event.preventDefault();
     finalizeCandidateUpdate(candidateId); // Call the function to handle the form submission
 }
 
@@ -347,9 +340,6 @@ async function finalizeCandidateUpdate(candidateId) {
         candidate.append('picture', picture);
     }
 
-    console.log('FormData:', candidate);
-
-    console.log('finalize candidate update', name, description);
     const response = await fetch(`api/candidates/update/` + candidateId, {
         method: 'POST',
         headers: {
@@ -358,7 +348,6 @@ async function finalizeCandidateUpdate(candidateId) {
         },
         body: candidate // FormData is correctly passed as the body
     });
-    console.log('Response:', response);
 
     if (response.ok) {
 
@@ -388,9 +377,6 @@ async function finalizeCandidateUpdate(candidateId) {
 
         let item = tempCandidate.find(item => item.initialId === candidateId);
         tempCandidate.splice(item, 1);
-
-        console.log('tempCandidate after update filter:************', tempCandidate);
-
 
     } else {
         const error = await response.json();
@@ -477,8 +463,6 @@ function cancelCandidateUpdate(candidateId) {
 
     let item = tempCandidate.find(item => item.initialId === candidateId);
     tempCandidate.splice(item, 1);
-
-    console.log('tempCandidate after cancel:************', tempCandidate);
 }
 
 function openCart() {

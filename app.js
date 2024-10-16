@@ -12,6 +12,7 @@ const { temporaryCheckout } = require('./controllers/donationController'); // Im
 const jwt = require('jsonwebtoken');
 const { auth } = require('./middleware/auth');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
 
 dotenv.config();
 connectDB();
@@ -30,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.set('views', 'views');
 app.set('view engine', 'ejs');
+
+app.use(compression());
 
 // Routes
 app.use('/api/auth', authRoutes);
@@ -62,6 +65,5 @@ app.get('/admin', temporaryCheckout, (req, res) => {
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
 });
 

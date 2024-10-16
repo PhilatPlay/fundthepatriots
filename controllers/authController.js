@@ -43,7 +43,6 @@ exports.register = async (req, res) => {
             });
         });
     } catch (err) {
-        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -79,7 +78,6 @@ exports.login = [
             };
 
             jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
-                console.log("The user from login: ", user);
                 if (err) throw err;
                 res.json({
                     status: 'success:',
@@ -89,7 +87,6 @@ exports.login = [
             });
 
         } catch (err) {
-            console.error(err.message);
             res.status(500).send('Server error');
         }
     }

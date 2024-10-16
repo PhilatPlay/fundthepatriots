@@ -187,7 +187,6 @@ tbody:hover tr:hover td {
 
     let token = localStorage.getItem('token');
     let role = JSON.parse(atob(token.split('.')[1])).user.role;
-    console.log("role: ", role);
     
     if (!token || role !== 'admin') {
       document.getElementById('only-admin-again').style.display = 'none';
@@ -202,11 +201,8 @@ tbody:hover tr:hover td {
 
   document.getElementById('candidateForm').addEventListener('submit', async (event) => {
     event.preventDefault();
-    console.log("event: ", event);
     
     const formData = new FormData(event.target);
-
-    console.log("formData:*************************** ", formData);
 
     const token = localStorage.getItem('token');
     const response = await fetch('/api/candidates', {
@@ -249,11 +245,8 @@ async function loadDonations() {
     const response = await fetch('/api/donations', {
         headers: { 'x-auth-token': token }
     });
-    console.log("token: ***************", token);
-    console.log("response: ***************", response);
 
     if (response.ok) {
-      console.log("response: ", response);
         const donations = await response.json();
         const donationsContainer = document.getElementById('donations');
         donations.forEach(donation => {

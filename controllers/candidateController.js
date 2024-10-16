@@ -6,7 +6,6 @@ exports.getCandidates = async (req, res) => {
         res.json(candidates);
 
     } catch (err) {
-        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -14,7 +13,6 @@ exports.getCandidates = async (req, res) => {
 exports.createCandidate = async (req, res) => {
     const { name, description } = req.body;
     const picture = req.file ? `/uploads/${req.file.filename}` : null;
-    console.log("user adding candidate************************", req.user)
 
     try {
         const newCandidate = new Candidate({
@@ -27,8 +25,6 @@ exports.createCandidate = async (req, res) => {
         res.json(candidate);
 
     } catch (err) {
-
-        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -48,8 +44,6 @@ exports.deleteCandidate = async (req, res) => {
         res.json({ msg: 'Candidate deactivated' });
 
     } catch (err) {
-
-        console.error(err.message);
         res.status(500).send('Server error');
     }
 }
@@ -58,7 +52,6 @@ exports.updateCandidate = async (req, res) => {
 
     let { name, description } = req.body;
     picture = req.file ? `/uploads/${req.file.filename}` : null;
-    console.log("picture ************", picture)
 
     try {
         let candidate = await Candidate.findById(req.params.id);
@@ -73,7 +66,6 @@ exports.updateCandidate = async (req, res) => {
         candidate = await candidate.save();
         res.json(candidate);
     } catch (err) {
-        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -88,7 +80,6 @@ exports.getCandidate = async (req, res) => {
         res.json(candidate);
 
     } catch (err) {
-        console.error(err.message);
         res.status(500).send('Server error');
     }
 }
