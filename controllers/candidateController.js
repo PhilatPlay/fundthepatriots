@@ -6,6 +6,7 @@ exports.getCandidates = async (req, res) => {
         res.json(candidates);
 
     } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -25,6 +26,7 @@ exports.createCandidate = async (req, res) => {
         res.json(candidate);
 
     } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -44,6 +46,7 @@ exports.deleteCandidate = async (req, res) => {
         res.json({ msg: 'Candidate deactivated' });
 
     } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server error');
     }
 }
@@ -66,6 +69,7 @@ exports.updateCandidate = async (req, res) => {
         candidate = await candidate.save();
         res.json(candidate);
     } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server error');
     }
 };
@@ -80,6 +84,7 @@ exports.getCandidate = async (req, res) => {
         res.json(candidate);
 
     } catch (err) {
+        console.error(err.message);
         res.status(500).send('Server error');
     }
 }
