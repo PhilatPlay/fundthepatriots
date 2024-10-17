@@ -34,6 +34,10 @@ app.set('view engine', 'ejs');
 
 app.use(compression());
 
+app.get('/', (req, res) => {
+    res.redirect('/index');
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/candidates', candidateRoutes);
