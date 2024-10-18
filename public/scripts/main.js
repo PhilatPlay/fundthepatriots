@@ -529,17 +529,13 @@ function avoidNewCandidateAttempt() {
     const theName = document.getElementById('name').value;
     const theDescription = document.getElementById('description').value;
     const thePicture = document.getElementById('picture').value;
-    const filePath = thePicture.value;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
-    if (theName.length < 2 || theDescription.length < 2 || !allowedExtensions.exec(filePath)) {
+
+    if (theName.length < 2 || theDescription.length < 2 || !thePicture) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('The Add Candidate form is not complete yet');
         myCloseMessageFunction();
 
-        if (!allowedExtensions.exec(filePath)) {
-            fileInput.value = ''; // Clear the input    
-        }
     } else {
         document.getElementById("addCandidateButton").disabled = false;
     }
