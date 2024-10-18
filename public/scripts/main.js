@@ -526,9 +526,9 @@ function avoidRegisterAttempt() {
 }
 
 function avoidNewCandidateAttempt() {
-    const theName = document.getElementById('name').value;
-    const theDescription = document.getElementById('description').value;
-    const thePicture = document.getElementById('picture').value;
+    const theName = document.getElementById("name").value;
+    const theDescription = document.getElementById("description").value;
+    const thePicture = document.getElementById("picture").value;
 
 
     if (theName.length < 2 || theDescription.length < 2 || !thePicture) {
@@ -542,7 +542,7 @@ function avoidNewCandidateAttempt() {
 }
 
 function ckeckName() {
-    const theName = document.getElementById('name').value;
+    const theName = document.getElementById("name").value;
 
     if (theName.length < 2 || theName.length > 20) {
         sendErrorMessage('Please enter a name of at least 2 characters and not more than 20 characters');
@@ -551,7 +551,7 @@ function ckeckName() {
 }
 
 function ckeckDescription() {
-    const theDescription = document.getElementById('description').value;
+    const theDescription = document.getElementById("description").value;
 
     if (theDescription.length < 2 || theDescription.length > 20) {
         sendErrorMessage('Please enter a description of at least 2 characters and not more than 20 characters');
@@ -560,7 +560,7 @@ function ckeckDescription() {
 }
 
 function ckeckPicture() {
-    const thePicture = document.getElementById('picture').value;
+    const thePicture = document.getElementById("picture").value;
     const filePath = thePicture.value;
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
