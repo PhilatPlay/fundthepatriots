@@ -13,7 +13,7 @@ const storage = multer.diskStorage({
 // Initialize upload
 const upload = multer({
     storage: storage,
-    limits: { fileSize: 1000000 }, // 1MB limit
+    limits: { fileSize: 5000000 }, // 5MB limit allowable for quality; candidates and pics will be limited and managed.
     fileFilter: (req, file, cb) => {
         checkFileType(file, cb);
     }
@@ -29,9 +29,14 @@ function checkFileType(file, cb) {
     const mimetype = filetypes.test(file.mimetype);
 
     if (mimetype && extname) {
+
+        // Check file size
+        if (file.size > 5 * 1024 * 1024) { // 5MB limit
+            return cb(new Error('File size exceeds 5MB. Please resize your image.'));
+        }
         return cb(null, true);
     } else {
-        cb('Error: Images Only!');
+        cb(new Error('Images Only!'));
     }
 }
 

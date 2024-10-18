@@ -7,7 +7,7 @@ exports.getCandidates = async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(417).json(err.message);
     }
 };
 
@@ -27,7 +27,7 @@ exports.createCandidate = async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(417).json(err.message);
     }
 };
 
@@ -47,7 +47,7 @@ exports.deleteCandidate = async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(500).json('Server error');
     }
 }
 
@@ -70,7 +70,7 @@ exports.updateCandidate = async (req, res) => {
         res.json(candidate);
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(417).json(err.message);
     }
 };
 
@@ -85,7 +85,7 @@ exports.getCandidate = async (req, res) => {
 
     } catch (err) {
         console.error(err.message);
-        res.status(500).send('Server error');
+        res.status(417).json(err.message);
     }
 }
 
