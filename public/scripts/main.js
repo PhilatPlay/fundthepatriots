@@ -544,7 +544,7 @@ function avoidNewCandidateAttempt() {
 function ckeckName() {
     const theName = document.getElementById('name').value;
 
-    if (theName === '' || theName.length < 2 || theName.length > 20) {
+    if (theName.length < 2 || theName.length > 20) {
         sendErrorMessage('Please enter a name of at least 2 characters and not more than 20 characters');
         myCloseMessageFunction();
     }
@@ -553,7 +553,7 @@ function ckeckName() {
 function ckeckDescription() {
     const theDescription = document.getElementById('description').value;
 
-    if (theDescription === '' || theDescription.length < 2 || theDescription.length > 20) {
+    if (theDescription.length < 2 || theDescription.length > 20) {
         sendErrorMessage('Please enter a description of at least 2 characters and not more than 20 characters');
         myCloseMessageFunction();
     }
