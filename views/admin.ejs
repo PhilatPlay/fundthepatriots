@@ -136,17 +136,17 @@ tbody:hover tr:hover td {
   <form id="candidateForm" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input type="text" class="form-control" id="name" name="name" required>
+      <input onblur="checkName()" type="text" class="form-control" id="name" name="name" required>
     </div>
     <div class="form-group">
       <label for="description">Position:</label>
-      <input type="text" class="form-control" id="description" name="description" required>
+      <input onblur="checkDescription()" type="text" class="form-control" id="description" name="description" required>
     </div>
     <div class="form-group">
       <label for="picture">Picture:</label>
-      <input type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
+      <input onblur="checkPicture()" type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
     </div>
-    <button type="submit" class="btn btn-primary mt-3">Add Candidate</button>
+    <button onmouseover="avoidNewCandidateAttempt()" id="addCandidateButton" type="submit" class="btn btn-primary mt-3">Add Candidate</button>
   </form>
   </div>
   </div>

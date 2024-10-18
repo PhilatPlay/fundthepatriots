@@ -525,6 +525,49 @@ function avoidRegisterAttempt() {
     }
 }
 
+function avoidNewCandidateAttempt() {
+    const theName = document.getElementById('name').value;
+    const theDescription = document.getElementById('description').value;
+    const thePicture = document.getElementById('picture').value;
+
+    if (theName.length < 2 || theDescription.length < 2 || !thePicture.includes('.gif')
+        || !thePicture.includes('.png') || !thePicture.includes('.jpg') || !thePicture.includes('.jpeg')) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('The Add Candidate form is not complete yet');
+        myCloseMessageFunction();
+    } else {
+        document.getElementById("addCandidateButton").disabled = false;
+    }
+}
+
+function ckeckName() {
+    const theName = document.getElementById('name').value;
+
+    if (theName === '' || theName.length < 2 || theName.length > 20) {
+        sendErrorMessage('Please enter a name of at least 2 characters and not more than 20 characters');
+        myCloseMessageFunction();
+    }
+}
+
+function ckeckDescription() {
+    const theDescription = document.getElementById('description').value;
+
+    if (theDescription === '' || theDescription.length < 2 || theDescription.length > 20) {
+        sendErrorMessage('Please enter a description of at least 2 characters and not more than 20 characters');
+        myCloseMessageFunction();
+    }
+}
+
+function ckeckPicture() {
+    const thePicture = document.getElementById('picture').value;
+
+    if (!thePicture.includes('.gif') || !thePicture.includes('.png') || !thePicture.includes('.jpg') || !thePicture.includes('.jpeg')) {
+        sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
+        myCloseMessageFunction();
+    }
+}
+
+
 function emailCheck() {
     const theEmail = document.getElementById('email').value;
 
