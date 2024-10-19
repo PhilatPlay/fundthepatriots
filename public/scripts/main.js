@@ -632,8 +632,8 @@ function checkFileType() {
 function removeAttribute() {
     let thePic = document.getElementById("picture");
     thePic.value = '';
-    thePic.setAttribute('value', '');
-    thePic.setAttribute('', '');
+    // thePic.setAttribute('value', '');
+    // thePic.setAttribute('', '');
 
 }
 
