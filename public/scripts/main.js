@@ -541,7 +541,7 @@ function avoidNewCandidateAttempt() {
     }
 }
 
-function ckeckName() {
+function checkName() {
     const theName = document.getElementById("name").value;
 
     if (theName.length < 2 || theName.length > 20) {
@@ -550,7 +550,7 @@ function ckeckName() {
     }
 }
 
-function ckeckDescription() {
+function checkDescription() {
     const theDescription = document.getElementById("description").value;
 
     if (theDescription.length < 2 || theDescription.length > 20) {
@@ -559,7 +559,7 @@ function ckeckDescription() {
     }
 }
 
-function ckeckPicture() {
+function checkPicture() {
     const thePicture = document.getElementById("picture").value;
     const filePath = thePicture.value;
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
