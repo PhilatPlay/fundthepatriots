@@ -541,43 +541,6 @@ function avoidNewCandidateAttempt() {
     }
 }
 
-function ckeckName() {
-    const theName = document.getElementById("name").value;
-
-    if (theName.length < 2 || theName.length > 20) {
-        sendErrorMessage('Please enter a name of at least 2 characters and not more than 20 characters');
-        myCloseMessageFunction();
-    }
-}
-
-function ckeckDescription() {
-    const theDescription = document.getElementById("description").value;
-
-    if (theDescription.length < 2 || theDescription.length > 20) {
-        sendErrorMessage('Please enter a description of at least 2 characters and not more than 20 characters');
-        myCloseMessageFunction();
-    }
-}
-
-function ckeckPicture() {
-    const thePicture = document.getElementById("picture").value;
-    const filePath = thePicture.value;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-
-    if (!filePath) {
-        sendErrorMessage('Please upload a picture');
-        myCloseMessageFunction();
-        return;
-    }
-
-    if (!allowedExtensions.exec(filePath)) {
-        sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
-        myCloseMessageFunction();
-        fileInput.value = ''; // Clear the input
-        return;
-    }
-}
-
 function emailCheck() {
     const theEmail = document.getElementById('email').value;
 
