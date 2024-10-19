@@ -543,16 +543,35 @@ function avoidNewCandidateAttempt() {
 
     if (thePicture && theName.length > 2 && theDescription.length < 2) {
         document.getElementById("addCandidateButton").disabled = true;
-        sendErrorMessage('Please add  position candidate is running for to complete the form');
+        sendErrorMessage('Please add the position candidate is running for to complete the form');
         myCloseMessageFunction();
     }
 
-    if (theName.length < 2 || theDescription.length < 2 || !thePicture) {
+    if (theName.length > 2 && theDescription.length < 2 && !thePicture) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('Please add a position candidate is running for and an image to complete the form');
+        myCloseMessageFunction();
+    }
+
+    if (!thePicture && theDescription.length > 2 && theName.length < 2) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('Please add a name and an image to complete the form');
+        myCloseMessageFunction();
+    }
+
+    if (thePicture && theName.length < 2 && theDescription.length < 2) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('Please add a name and position candidate is running for to complete the form');
+        myCloseMessageFunction();
+    }
+
+    if (theName.length < 2 && theDescription.length < 2 && !thePicture) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('The Add Candidate form is not complete yet');
         myCloseMessageFunction();
 
     } else {
+
         document.getElementById("addCandidateButton").disabled = false;
     }
 }
@@ -577,19 +596,19 @@ function checkDescription() {
 
 function checkPicture() {
     const thePicture = document.getElementById("picture").value;
-    const filePath = thePicture.value;
     const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
-    if (!filePath) {
+    if (!thePicture) {
         sendErrorMessage('Please upload a picture');
         myCloseMessageFunction();
         return;
     }
 
-    if (!allowedExtensions.exec(filePath)) {
+    if (thePicture && !allowedExtensions.exec(thePicture)) {
+        thePicture.value = '';
+        thePicture.innerText = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
-        fileInput.value = ''; // Clear the input
         return;
     }
 }
@@ -599,6 +618,7 @@ function checkFileType() {
 
     if (!thePicture.includes('.jpg') || !thePicture.includes('.jpeg') || !thePicture.includes('.png') || !thePicture.includes('.gif')) {
         thePicture.value = '';
+        thePicture.innerText = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
         // Clear the input
