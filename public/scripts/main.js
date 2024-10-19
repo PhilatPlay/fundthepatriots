@@ -567,7 +567,7 @@ function avoidNewCandidateAttempt() {
         myCloseMessageFunction();
     }
 
-    if (theName.length < 2 && theDescription.length < 2 && !thePicture) {
+    if (theName.length < 2 && theDescription.length < 2 && !thePicture && (thePicture && (!thePicture.includes('.jpg') && !thePicture.includes('.jpeg') && !thePicture.includes('.png') && !thePicture.includes('.gif')))) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('The Add Candidate form is not complete yet');
         myCloseMessageFunction();
