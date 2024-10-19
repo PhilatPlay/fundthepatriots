@@ -614,7 +614,7 @@ function checkPicture() {
 }
 
 function checkFileType() {
-    const thePicture = document.getElementById("picture").value;
+    let thePicture = document.getElementById("picture").value;
 
     if (!thePicture.includes('.jpg') || !thePicture.includes('.jpeg') || !thePicture.includes('.png') || !thePicture.includes('.gif')) {
         thePicture = '';
