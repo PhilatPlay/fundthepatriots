@@ -396,7 +396,7 @@ function picFunction(candidateId) {
     }
 }
 
-async function deleteCandidate(candidateId)  nmbjhhhhhh nbjhc {
+async function deleteCandidate(candidateId) {
     const token = localStorage.getItem('token');
     if (token) {
         let role = JSON.parse(atob(token.split('.')[1])).user.role;
