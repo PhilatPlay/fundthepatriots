@@ -530,18 +530,20 @@ function avoidNewCandidateAttempt() {
     const theDescription = document.getElementById("description").value;
     const thePicture = document.getElementById("picture").value;
 
+
+
     if (theName.length > 2 && theDescription.length > 2 && !thePicture) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('Please add an image to complete the form');
         myCloseMessageFunction();
     }
-    if (thePicture && theDescription.length > 2 && theName.length < 2) {
+    if (thePicture && (thePicture.includes('.jpg') || thePicture.includes('.jpeg') || thePicture.includes('.png') || thePicture.includes('.gif')) && theDescription.length > 2 && theName.length < 2) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('Please add an name to complete the form');
         myCloseMessageFunction();
     }
 
-    if (thePicture && theName.length > 2 && theDescription.length < 2) {
+    if (thePicture && (thePicture.includes('.jpg') || thePicture.includes('.jpeg') || thePicture.includes('.png') || thePicture.includes('.gif')) && theName.length > 2 && theDescription.length < 2) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('Please add the position candidate is running for to complete the form');
         myCloseMessageFunction();
@@ -559,7 +561,7 @@ function avoidNewCandidateAttempt() {
         myCloseMessageFunction();
     }
 
-    if (thePicture && theName.length < 2 && theDescription.length < 2) {
+    if (thePicture && (thePicture.includes('.jpg') || thePicture.includes('.jpeg') || thePicture.includes('.png') || thePicture.includes('.gif')) && theName.length < 2 && theDescription.length < 2) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('Please add a name and position candidate is running for to complete the form');
         myCloseMessageFunction();
