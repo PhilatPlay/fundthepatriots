@@ -619,10 +619,10 @@ function checkFileType() {
     let thePicture = document.getElementById("picture").value;
     let thePic = document.getElementById("picture");
 
-    if (thePicture.includes('.jpg') || thePicture.includes('.jpeg') || thePicture.includes('.png') || thePicture.includes('.gif')) {
+    if (thePicture.includes('.jpg') || thePicture.includes('.jpeg') || thePicture.includes('.png') || thePicture.includes('.gif') || thePic.value === '') {
+        return;
 
     } else {
-        // thePic.innerText = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
         removeAttribute();
@@ -633,8 +633,7 @@ function checkFileType() {
 function removeAttribute() {
     let thePic = document.getElementById("picture");
     thePic.value = '';
-    // thePic.setAttribute('value', '');
-    // thePic.setAttribute('', '');
+
 
 }
 
