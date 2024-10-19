@@ -146,7 +146,7 @@ tbody:hover tr:hover td {
     </div>
     <div class="form-group">
       <label for="picture">Picture:</label>
-      <input onblur="checkPicture()" type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
+      <input onchange="checkFileType()" type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
     </div>
     <button onmouseover="avoidNewCandidateAttempt()" id="addCandidateButton" type="submit" class="btn btn-primary mt-3">Add Candidate</button>
   </form>

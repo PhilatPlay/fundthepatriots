@@ -530,6 +530,22 @@ function avoidNewCandidateAttempt() {
     const theDescription = document.getElementById("description").value;
     const thePicture = document.getElementById("picture").value;
 
+    if (theName.length > 2 && theDescription.length > 2 && !thePicture) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('Please add an image to complete the form');
+        myCloseMessageFunction();
+    }
+    if (thePicture && theDescription.length > 2 && theName.length < 2) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('Please add an name to complete the form');
+        myCloseMessageFunction();
+    }
+
+    if (thePicture && theName.length > 2 && theDescription.length < 2) {
+        document.getElementById("addCandidateButton").disabled = true;
+        sendErrorMessage('Please add  position candidate is running for to complete the form');
+        myCloseMessageFunction();
+    }
 
     if (theName.length < 2 || theDescription.length < 2 || !thePicture) {
         document.getElementById("addCandidateButton").disabled = true;
@@ -569,6 +585,19 @@ function checkPicture() {
         myCloseMessageFunction();
         return;
     }
+
+    if (!allowedExtensions.exec(filePath)) {
+        sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
+        myCloseMessageFunction();
+        fileInput.value = ''; // Clear the input
+        return;
+    }
+}
+
+function checkFileType() {
+    const thePicture = document.getElementById("picture").value;
+    const filePath = thePicture.value;
+    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
     if (!allowedExtensions.exec(filePath)) {
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
