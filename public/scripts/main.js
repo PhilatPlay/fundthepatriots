@@ -567,7 +567,7 @@ function avoidNewCandidateAttempt() {
         myCloseMessageFunction();
     }
 
-    if (theName.length < 2 && theDescription.length < 2 && !thePicture && (thePicture && (!thePicture.includes('.jpg') && !thePicture.includes('.jpeg') && !thePicture.includes('.png') && !thePicture.includes('.gif')))) {
+    if (theName.length < 2 && theDescription.length < 2 && !thePicture || (thePicture && (!thePicture.includes('.jpg') && !thePicture.includes('.jpeg') && !thePicture.includes('.png') && !thePicture.includes('.gif')))) {
         document.getElementById("addCandidateButton").disabled = true;
         sendErrorMessage('The Add Candidate form is not complete yet');
         myCloseMessageFunction();
@@ -617,10 +617,11 @@ function checkPicture() {
 
 function checkFileType() {
     let thePicture = document.getElementById("picture").value;
+    let thePic = document.getElementById("picture");
 
     if (!thePicture.includes('.jpg') || !thePicture.includes('.jpeg') || !thePicture.includes('.png') || !thePicture.includes('.gif')) {
-        thePicture = '';
-        thePicture.innerText = '';
+        thePic.setAttribute('value', '');
+        thePic.innerText = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
         // Clear the input
