@@ -596,10 +596,9 @@ function checkPicture() {
 
 function checkFileType() {
     const thePicture = document.getElementById("picture").value;
-    const filePath = thePicture.value;
 
     if (!thePicture.includes('.jpg') || !thePicture.includes('.jpeg') || !thePicture.includes('.png') || !thePicture.includes('.gif')) {
-        fileInput.value = '';
+        thePicture.value = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
         // Clear the input
