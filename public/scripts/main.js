@@ -620,13 +620,19 @@ function checkFileType() {
     let thePic = document.getElementById("picture");
 
     if (!thePicture.includes('.jpg') || !thePicture.includes('.jpeg') || !thePicture.includes('.png') || !thePicture.includes('.gif')) {
-        thePic.setAttribute('value', '');
+
         thePic.innerText = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
-        // Clear the input
+        removeAttribute();
         return;
     }
+}
+
+function removeAttribute() {
+    let thePic = document.getElementById("picture");
+    thePic.setAttribute('value', '');
+
 }
 
 function emailCheck() {
