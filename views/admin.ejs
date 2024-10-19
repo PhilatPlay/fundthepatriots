@@ -137,15 +137,15 @@ tbody:hover tr:hover td {
   <form id="candidateForm" enctype="multipart/form-data">
     <div class="form-group">
       <label for="name">Name:</label>
-      <input onblur="checkName()" type="text" class="form-control" id="name" name="name" required>
+      <input onfocusout="checkName()" type="text" class="form-control" id="name" name="name" required>
     </div>
     <div class="form-group">
       <label for="description">Position:</label>
-      <input onblur="checkDescription()" type="text" class="form-control" id="description" name="description" required>
+      <input onfocusout="checkDescription()" type="text" class="form-control" id="description" name="description" required>
     </div>
     <div class="form-group">
       <label for="picture">Picture:</label>
-      <input onblur="checkPicture()" type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
+      <input onfocusout="checkPicture()" type="file" class="form-control" id="picture" name="picture" accept="image/*" required>
     </div>
     <button onmouseover="avoidNewCandidateAttempt()" id="addCandidateButton" type="submit" class="btn btn-primary mt-3">Add Candidate</button>
   </form>
@@ -271,44 +271,7 @@ async function loadDonations() {
 
   }
   </script>
-  <script>
-    function ckeckName() {
-    const theName = document.getElementById("name").value;
-
-    if (theName.length < 2 || theName.length > 20) {
-        sendErrorMessage('Please enter a name of at least 2 characters and not more than 20 characters');
-        myCloseMessageFunction();
-    }
-}
-
-function ckeckDescription() {
-    const theDescription = document.getElementById("description").value;
-
-    if (theDescription.length < 2 || theDescription.length > 20) {
-        sendErrorMessage('Please enter a description of at least 2 characters and not more than 20 characters');
-        myCloseMessageFunction();
-    }
-}
-
-function ckeckPicture() {
-    const thePicture = document.getElementById("picture").value;
-    const filePath = thePicture.value;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
-
-    if (!filePath) {
-        sendErrorMessage('Please upload a picture');
-        myCloseMessageFunction();
-        return;
-    }
-
-    if (!allowedExtensions.exec(filePath)) {
-        sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
-        myCloseMessageFunction();
-        fileInput.value = ''; // Clear the input
-        return;
-    }
-}
-  </script>
+  
   <script src="scripts/main.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
