@@ -597,12 +597,12 @@ function checkPicture() {
 function checkFileType() {
     const thePicture = document.getElementById("picture").value;
     const filePath = thePicture.value;
-    const allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;
 
-    if (!allowedExtensions.exec(filePath)) {
+    if (!thePicture.includes('.jpg') || !thePicture.includes('.jpeg') || !thePicture.includes('.png') || !thePicture.includes('.gif')) {
+        fileInput.value = '';
         sendErrorMessage('Please upload a picture of type .gif, .png, .jpg, or .jpeg');
         myCloseMessageFunction();
-        fileInput.value = ''; // Clear the input
+        // Clear the input
         return;
     }
 }
