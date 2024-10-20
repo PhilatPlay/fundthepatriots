@@ -672,7 +672,7 @@ function checkToken() {
 
         if (token && role && role === 'admin') {
             let timeout;
-            sendErrorMessage('Please login as general user to donate; Admin not permitted.');
+            sendErrorMessage('Please login as general user to donate.');
             myCloseMessageFunction();
             timeout = setTimeout(sendUserToLogin, 5000);
 
@@ -683,7 +683,7 @@ function checkToken() {
     }
     if (!token) {
         let timeout
-        sendErrorMessage('Please login to donate; donations are regulated.');
+        sendErrorMessage('Please login to donate.');
         myCloseMessageFunction();
         timeout = setTimeout(sendUserToLogin, 5000);
 
