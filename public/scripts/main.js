@@ -177,8 +177,8 @@ function updateCart() {
         cartItem.classList.add('row', 'item-width');
         cartItem.innerHTML =
             `<div class="col-4 car-cand-div"><p class="mt-2 cart-candidate">${item.candidateName}: </p></div>
-        <div class="col-3 row"><p id="original-amount${item.candidateId}" class="mt-2"> $${item.amount}</p>
-        <p id="dollar-sign${item.candidateId}" class="mt-2 bye-for-now">$</p><input type="number" id="edited-amount${item.candidateId}" class="mb-2 cart-item-edited-amount bye-for-now" placeholder="${item.amount}"></div>
+        <div class="col-3 row"><p id="original-amount${item.candidateId}" class="mt-2 text-success"> $${item.amount}</p>
+        <p id="dollar-sign${item.candidateId}" class="mt-2 bye-for-now text-success">$</p><input type="number" id="edited-amount${item.candidateId}" class="mb-2 cart-item-edited-amount bye-for-now text-success" placeholder="${item.amount}"></div>
         <div class="modify-buttons mt-1 car-cand-div col-5"><button id="cart-item-update-button${item.candidateId}" onclick="updateCartItem('${item.candidateId}')" class="cart-item-updater-button updater">update</button>
         <button id="cart-item-delete-button${item.candidateId}" onclick="deleteFromCart('${item.candidateId}')" class="cart-item-delete-button deleter">delete</button>
         <button id="cart-item-done-button${item.candidateId}" onclick="doneAtCart('${item.candidateId}')" class="bye-for-now ml-1 text-success cart-item-delete-button done">done</button>
