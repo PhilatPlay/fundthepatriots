@@ -479,7 +479,7 @@ function logout() {
 
 function myCloseMessageFunction() {
     let timeout
-    timeout = setTimeout(closeMessage, 3000);
+    timeout = setTimeout(closeMessage, 5000);
 }
 
 function closeMessage() {
@@ -674,7 +674,10 @@ function checkToken() {
             let timeout;
             sendErrorMessage('Please login as general user to donate; Admin not permitted.');
             myCloseMessageFunction();
-            timeout = setTimeout(sendUserToLogin, 3000);
+            timeout = setTimeout(sendUserToLogin, 5000);
+
+            document.activeElement.blur();
+            return false;
         }
 
     }
@@ -682,7 +685,10 @@ function checkToken() {
         let timeout
         sendErrorMessage('Please login to donate; donations are regulated.');
         myCloseMessageFunction();
-        timeout = setTimeout(sendUserToLogin, 3000);
+        timeout = setTimeout(sendUserToLogin, 5000);
+
+        document.activeElement.blur();
+        return false;
     }
 }
 
@@ -695,7 +701,7 @@ function sendToIndex() {
 }
 
 function closeAfterMessage() {
-    timeout = setTimeout(sendUserToLogin, 3000);
+    timeout = setTimeout(sendUserToLogin, 5000);
 }
 
 
