@@ -49,16 +49,9 @@
 </div>
   <script>
     let token = localStorage.getItem('token');
-
-if (token) {
-            let role = JSON.parse(atob(token.split('.')[1])).user.role;
-            if (role !== 'admin') {
-
-      document.getElementById('only-admin').style.display = 'none'; 
+    if (!token || (token && !JSON.parse(atob(token.split('.')[1])).user.role === 'admin')) {
+            document.getElementById('only-admin').style.display = 'none'; 
     }
-    }
-
-  
   </script>
   <script>
     document.getElementById('loginForm').addEventListener('submit', async (event) => {
